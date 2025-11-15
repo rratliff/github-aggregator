@@ -21,4 +21,12 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Octocat")));
     }
+
+    @Test
+    void user_withUsername_returnsRepository(@Autowired MockMvc mvc) throws Exception {
+        mvc.perform(get("/user/octocat"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("boysenberry-repo-1")));
+    }
+
 }
