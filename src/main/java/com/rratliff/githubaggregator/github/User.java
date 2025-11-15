@@ -3,7 +3,7 @@ package com.rratliff.githubaggregator.github;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * {
@@ -24,5 +24,5 @@ public record User(
         String name,
         String location,
         String email,
-        LocalDateTime createdAt
+        ZonedDateTime createdAt
 ) {}

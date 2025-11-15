@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
-/** Calls the GithubAPI class, aggregates and caches the results. */
+/** Calls the GithubAPI class, aggregates the results. */
 @Component
 public class GithubService {
 

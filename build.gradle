@@ -16,6 +16,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.wiremock.integrations:wiremock-spring-boot:3.9.0'
 
 	integTestImplementation 'org.htmlunit:htmlunit'
 }
