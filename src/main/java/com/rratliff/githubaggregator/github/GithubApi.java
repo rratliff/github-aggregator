@@ -11,13 +11,18 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 public class GithubApi {
 
     private final String baseUrl;
+    private final RestClient restClient;
 
     public GithubApi(@Value("${github.baseUrl:https://api.github.com}") String baseUrl) {
         this.baseUrl = baseUrl;
+        this.restClient = RestClient.builder().defaultStatusHandler(
+                status -> status.value() == 404, (request, response) -> {
+                    throw new UserNotFoundException(response);
+                }
+        ).build();
     }
 
     public User getUser(String username) {
-        RestClient restClient = RestClient.create();
         return restClient.get()
                 .uri(baseUrl+"/users/"+username)
                 .accept(APPLICATION_JSON)
@@ -26,7 +31,6 @@ public class GithubApi {
     }
 
     public JsonNode getRepositories(String username) {
-        RestClient restClient = RestClient.create();
         return restClient.get()
                 .uri(baseUrl+"/users/"+username+"/repos")
                 .accept(APPLICATION_JSON)

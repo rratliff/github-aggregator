@@ -1,12 +1,12 @@
 package com.rratliff.githubaggregator.api;
 
 import com.rratliff.githubaggregator.github.GithubService;
+import com.rratliff.githubaggregator.github.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 
 @Controller
@@ -23,6 +23,10 @@ public class UserController {
     @GetMapping("/{username}")
     @ResponseBody
     public User user(@PathVariable String username) {
-        return this.githubService.getUser(username);
+        try {
+            return this.githubService.getUser(username);
+        } catch (UserNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User Not Found");
+        }
     }
 }
