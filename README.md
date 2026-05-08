@@ -17,8 +17,14 @@ The server runs on port 8080. An example curl request is provided in `http/user.
 * The service is a Spring Boot application using Java 17 and Gradle.
 * We use Spring MVC for the REST API, contained in the package `com.rratliff.githubaggregator.api`.
 * The Github interactions are contained in the package `com.rratliff.githubaggregator.github`.
-    * Caching is implemented using Spring's `@Cacheable` annotation on `GithubService.getUser`. Caffeine is the in-memory cache provider, configured in `CacheConfig` with a 60-minute TTL and a maximum of 500 entries, aligning with GitHub's unauthenticated API rate limit of 60 requests/hour.
+    * Caching is implemented using Spring's `@Cacheable` annotation on `GithubService.getUser`. Caffeine is the in-memory cache provider, configured in `CacheConfig`.
 * Uses RestClient (from Spring Framework) and Jackson (part of Spring Boot BOM) for the API interactions.
+
+## Github API Interaction
+
+* Used Apache HTTP Client5 to make the API calls.
+* Currently configured with default values but it would be very common to customize timeouts.
+* Optional debug logging to verify that caching is working as expected.
 
 ## Additional interesting decisions
 

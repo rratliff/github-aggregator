@@ -1,9 +1,7 @@
 plugins {
+	id 'java'
 	alias(libs.plugins.org.springframework.boot)
 	alias(libs.plugins.io.spring.dependency.management)
-	id "nebula.integtest" version "8.2.0"
-	id 'java'
-	id "fi.evident.beanstalk" version "0.3.3"
 }
 
 repositories {
@@ -16,11 +14,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-cache'
 	implementation 'com.github.ben-manes.caffeine:caffeine'
+	implementation 'org.apache.httpcomponents.client5:httpclient5'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.wiremock.integrations:wiremock-spring-boot:3.9.0'
-
-	integTestImplementation 'org.htmlunit:htmlunit'
+    testImplementation 'org.wiremock.integrations:wiremock-spring-boot:4.2.1'
 }
 
 tasks.withType(Test).configureEach {

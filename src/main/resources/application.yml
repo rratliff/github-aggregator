@@ -5,5 +5,6 @@ logging:
   level:
     org.springframework.web: INFO
     org.springframework.security: INFO
+#    org.apache.hc.client5.http: DEBUG
 #    org.springframework.boot.autoconfigure: DEBUG
 
