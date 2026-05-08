@@ -26,10 +26,8 @@ The server runs on port 8080. An example curl request is provided in `http/user.
 * Currently configured with default values but it would be very common to customize timeouts.
 * Optional debug logging to verify that caching is working as expected.
 
-## Additional interesting decisions
+## Exception Handling
 
-* Decided to use a full data model class for the User object.
-* For the repository object, we use JsonNode and fetch the specific fields we need. (Just 2 of them)
 * Use RestClient statusHandler to handle 404s and throw our own exception.
 * Use try-catch in the controller method to turn the UserNotFoundException into a 404 response.
 
