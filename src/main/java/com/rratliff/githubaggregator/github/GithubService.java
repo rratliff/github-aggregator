@@ -2,6 +2,7 @@ package com.rratliff.githubaggregator.github;
 
 import com.rratliff.githubaggregator.api.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class GithubService {
         this.githubApi = githubApi;
     }
 
+    @Cacheable("github-users")
     public com.rratliff.githubaggregator.api.User getUser(String username) {
         final var user = githubApi.getUser(username);
         final var repositories = githubApi.getRepositories(username);

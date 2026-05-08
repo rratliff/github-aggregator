@@ -14,6 +14,8 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'com.github.ben-manes.caffeine:caffeine'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.wiremock.integrations:wiremock-spring-boot:3.9.0'
